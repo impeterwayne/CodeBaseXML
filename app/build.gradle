@@ -26,6 +26,9 @@ android {
         dataBinding = true
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://ai-service.backendvn.com/\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -108,6 +111,7 @@ dependencies {
 
     //RecyclerView
     def epoxyVersion = "5.1.4"
+    //noinspection UseTomlInstead
     implementation "com.airbnb.android:epoxy:$epoxyVersion"
     //noinspection KaptUsageInsteadOfKsp
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
