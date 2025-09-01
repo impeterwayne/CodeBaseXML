@@ -21,6 +21,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures{
+        buildConfig = true
+        dataBinding = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -90,18 +94,24 @@ dependencies {
     implementation libs.sdp.android
     implementation libs.ssp.android
 
-
     //ShapeView
     implementation(libs.shapeview)
     implementation(libs.shapedrawable)
 
-    //
     implementation libs.gson
-
-
     implementation libs.utilcodex
 
     implementation project(':xxpermission')
+
+    // Lottie
+    implementation libs.lottie
+
+    //RecyclerView
+    def epoxyVersion = "5.1.4"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    //noinspection KaptUsageInsteadOfKsp
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
 
     //Testing
     testImplementation libs.junit
