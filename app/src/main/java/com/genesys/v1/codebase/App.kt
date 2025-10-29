@@ -1,6 +1,7 @@
 package com.genesys.v1.codebase
 
 import android.app.Application
+import com.tencent.mmkv.MMKV
 
 /**
  * @author : CuongNK
@@ -10,6 +11,6 @@ import android.app.Application
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-
+        MMKV.initialize(this)
     }
 }

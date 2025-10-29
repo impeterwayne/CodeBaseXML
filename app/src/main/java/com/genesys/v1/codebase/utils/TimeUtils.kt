@@ -1,6 +1,6 @@
 package com.genesys.v1.codebase.utils
 
-import com.genesys.v1.codebase.data.sharepreferences.SharedPreferencesExt
+import com.genesys.v1.codebase.data.mmkv.MMKVData
 
 
 /**
@@ -12,7 +12,7 @@ object TimeUtils {
 
     fun isTimeRangeValidForFetchingData(): Boolean {
         val currentTime = System.currentTimeMillis()
-        val lastFetchTime = SharedPreferencesExt.lastFetchTemplateTime
+        val lastFetchTime = MMKVData.lastFetchTemplateTime
         return (currentTime - lastFetchTime) > ONE_DAY_IN_MILLI_SEC
     }
 }

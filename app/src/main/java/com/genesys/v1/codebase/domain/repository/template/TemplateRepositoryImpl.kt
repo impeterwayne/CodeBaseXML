@@ -4,8 +4,8 @@ import androidx.annotation.WorkerThread
 import com.genesys.v1.codebase.data.database.dao.TemplateCollectionsDao
 import com.genesys.v1.codebase.data.database.entity.mapper.asDomain
 import com.genesys.v1.codebase.data.database.entity.mapper.asEntity
+import com.genesys.v1.codebase.data.mmkv.MMKVData
 import com.genesys.v1.codebase.data.network.service.ApiService
-import com.genesys.v1.codebase.data.sharepreferences.SharedPreferencesExt
 import com.genesys.v1.codebase.domain.model.template.TemplateCollections
 import com.genesys.v1.codebase.utils.TimeUtils
 import com.skydoves.sandwich.message
@@ -40,7 +40,7 @@ class TemplateRepositoryImpl @Inject constructor(
                 emit(collections)
                 templateCollectionsDao.clearAllTemplateCollections()
                 templateCollectionsDao.insertTemplateCollections(collections.asEntity())
-                SharedPreferencesExt.lastFetchTemplateTime = System.currentTimeMillis()
+                MMKVData.lastFetchTemplateTime = System.currentTimeMillis()
             }.suspendOnFailure {
                 emit(cached)
                 if(cached.isEmpty()){

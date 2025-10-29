@@ -1,6 +1,5 @@
 package com.genesys.v1.codebase.presenter.base.common
 
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -8,16 +7,16 @@ import android.net.NetworkRequest
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.ViewDataBinding
 import com.genesys.v1.codebase.presenter.base.extension.collectLatestRepeatOnLifecycle
+import com.gyf.immersionbar.BarHide
+import com.gyf.immersionbar.ktx.fitsTitleBar
+import com.gyf.immersionbar.ktx.immersionBar
+import com.gyf.immersionbar.ktx.showStatusBar
 
 typealias OnPerformBackPressed = () -> Unit
 
@@ -36,6 +35,7 @@ abstract class BaseActivity<VB, VM, Event> : AppCompatActivity()
             onPerformBackPressed?.invoke()
         }
     }
+    protected open fun statusBarInsetTargets(): List<View> = emptyList()
 
     private val connectivityManager: ConnectivityManager? by lazy {
         ContextCompat.getSystemService(this@BaseActivity, ConnectivityManager::class.java)
@@ -58,57 +58,40 @@ abstract class BaseActivity<VB, VM, Event> : AppCompatActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupInit()
-        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setLocale()
 
         viewBinding.lifecycleOwner = this@BaseActivity
-        makeDarkStatusBars()
         registerBackPressedDispatcher()
-
+        setupWindowInsets()
         initViews(savedInstanceState)
         initAds()
-        initObservers()
         initListeners()
-
+        initImmersiveBar()
+        initObservers()
         observerNetworkState()
         observerHasPurchase()
     }
-
-    private fun makeDarkStatusBars() {
-        WindowCompat.setDecorFitsSystemWindows(window, isFitsSystemWindows())
-        WindowInsetsControllerCompat(window, window.decorView).let { controller ->
-            controller.isAppearanceLightStatusBars = false
-            controller.isAppearanceLightNavigationBars = false
-            if (isHideSystemBars()) {
-                controller.hide(WindowInsetsCompat.Type.systemBars())
-            } else {
-                controller.hide(WindowInsetsCompat.Type.navigationBars())
-            }
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-    }
-
-    protected open fun setupStatusBar() {
-        window.statusBarColor = Color.TRANSPARENT
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-
-    }
-
+    protected open fun isForceDarkMode() : Boolean = true
     protected open fun isFitsSystemWindows(): Boolean = true
-    protected open fun isHideSystemBars(): Boolean = false
+    protected open fun isHideSystemBars(): Boolean = true
 
-    protected fun applyInsetToView(
-        targetView: View,
-        block: (view: View, insets: WindowInsetsCompat) -> Unit
-    ) {
-        ViewCompat.setOnApplyWindowInsetsListener(targetView) { view, insetCompact ->
-            block(view, insetCompact)
-            return@setOnApplyWindowInsetsListener WindowInsetsCompat.CONSUMED
+    private fun initImmersiveBar() {
+        immersionBar {
+            transparentBar()
+            if(isForceDarkMode()){
+                statusBarDarkFont(true)
+            }else{
+                autoDarkModeEnable(true)
+            }
+            fitsSystemWindows(isFitsSystemWindows())
+            if (isHideSystemBars()) {
+                hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
+                navigationBarEnable(false)
+                navigationBarWithKitkatEnable(false)
+                navigationBarWithEMUI3Enable(false)
+            }
         }
+        showStatusBar()
     }
 
     private fun registerBackPressedDispatcher() {
@@ -116,19 +99,6 @@ abstract class BaseActivity<VB, VM, Event> : AppCompatActivity()
         onBackPressedCallback.isEnabled = onHandleBackPressed()
     }
 
-    /**
-     * Custom BackPressed
-     * ```
-     * override fun onHandleBackPressed(onBackPressed: OnPerformBackPressed?): Boolean {
-     *     return super.onHandleBackPressed {
-     *         finish()
-     *     }
-     * }
-     * ```
-     * @param onBackPressed The callback to add
-     *
-     * @return The default enabled state for this callback.
-     */
     @CallSuper
     protected open fun onHandleBackPressed(onBackPressed: OnPerformBackPressed? = null): Boolean {
         this.onPerformBackPressed = onBackPressed
@@ -179,24 +149,27 @@ abstract class BaseActivity<VB, VM, Event> : AppCompatActivity()
         }
     }
 
-    private fun setLocale() {
-//        val language = SystemUtil.getPreLanguage(this)
-//        language?.let {
-//            val locale = Locale(it)
-//            Locale.setDefault(locale)
-//            val config = Configuration().apply {
-//                setLocale(locale)
-//            }
-//            resources.updateConfiguration(config, resources.displayMetrics)
-//        }
-    }
-
     protected fun withViewModels(block: VM.() -> Unit) {
         with(viewModel, block)
     }
 
     protected fun withViewBindings(block: VB.() -> Unit) {
         with(viewBinding, block)
+    }
+    private fun setupWindowInsets() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val targets = statusBarInsetTargets()
+        if (targets.isNotEmpty()) {
+            applyStatusBarPadding(*targets.toTypedArray())
+        } else {
+            applyStatusBarPadding()
+        }
+    }
+
+    private fun applyStatusBarPadding(vararg views: View) {
+        views.forEach { view ->
+            fitsTitleBar(view)
+        }
     }
 
     override fun onDestroy() {

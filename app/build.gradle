@@ -116,6 +116,14 @@ dependencies {
     //noinspection KaptUsageInsteadOfKsp
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
+    //noinspection NewerVersionAvailable
+    implementation libs.mmkv
+
+    //Immersion bar
+    implementation libs.immersionbar
+    implementation libs.immersionbar.ktx
+    implementation libs.immersionbar.components
+
 
     //Testing
     testImplementation libs.junit
