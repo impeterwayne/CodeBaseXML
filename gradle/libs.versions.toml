@@ -40,6 +40,7 @@ sspAndroid = "1.1.1"
 startupRuntime = "1.2.0"
 timber = "5.0.1"
 utilcodex = "1.31.1"
+xxpermissionKtx = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -89,6 +90,7 @@ shapeview = { module = "com.github.getActivity:ShapeView", version.ref = "shapev
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 utilcodex = { module = "com.blankj:utilcodex", version.ref = "utilcodex" }
+xxpermission-ktx = { module = "io.github.impeterwayne:xxpermission-ktx", version.ref = "xxpermissionKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

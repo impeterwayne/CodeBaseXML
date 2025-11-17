@@ -23,4 +23,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Codebase"
 include ':app'
-include ':xxpermission'

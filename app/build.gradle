@@ -104,8 +104,6 @@ dependencies {
     implementation libs.gson
     implementation libs.utilcodex
 
-    implementation project(':xxpermission')
-
     // Lottie
     implementation libs.lottie
 
@@ -118,6 +116,7 @@ dependencies {
 
     //noinspection NewerVersionAvailable
     implementation libs.mmkv
+    implementation libs.xxpermission.ktx
 
     //Immersion bar
     implementation libs.immersionbar
