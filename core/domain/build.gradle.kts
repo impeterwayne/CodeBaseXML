@@ -1,5 +1,6 @@
 plugins {
     id("codebase.android.library")
+    id("codebase.android.hilt")
 }
 
 android {
@@ -8,6 +9,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:common"))
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

@@ -1,7 +1,10 @@
 package com.genesys.feature.template.main
 
 import com.genesys.core.common.base.BaseViewModel
-import com.genesys.core.domain.repository.template.TemplateRepository
+import com.genesys.core.common.base.doOnError
+import com.genesys.core.common.base.doOnLoading
+import com.genesys.core.common.base.doOnSuccess
+import com.genesys.core.domain.usecase.template.GetAllTemplatesUseCase
 import com.genesys.core.model.template.Template
 import com.genesys.core.model.template.TemplateCollections
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val templateRepository: TemplateRepository
+    private val getAllTemplatesUseCase: GetAllTemplatesUseCase
 ) : BaseViewModel<MainViewModel.MainEvent>() {
 
     private val _templateCollections = MutableStateFlow<List<TemplateCollections>>(emptyList())
@@ -33,19 +36,19 @@ class MainViewModel @Inject constructor(
 
     private fun loadTemplates() {
         launchBlock {
-            templateRepository.getAllTemplates(
-                onStart = {
+            getAllTemplatesUseCase().collect { result ->
+                result.doOnLoading {
                     _isLoading.value = true
                     _errorMessage.value = null
-                },
-                onCompleted = {
-                    _isLoading.value = false
-                },
-                onError = { message ->
-                    _errorMessage.value = message ?: "Failed to load templates"
                 }
-            ).collect { collections ->
-                _templateCollections.value = collections
+                result.doOnSuccess { data ->
+                    _isLoading.value = false
+                    _templateCollections.value = data
+                }
+                result.doOnError { msg ->
+                    _isLoading.value = false
+                    _errorMessage.value = msg ?: "Failed to load templates"
+                }
             }
         }
     }

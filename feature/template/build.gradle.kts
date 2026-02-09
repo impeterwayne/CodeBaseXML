@@ -16,8 +16,6 @@ kapt {
 }
 
 dependencies {
-    implementation(project(":core:data"))
-
     // Epoxy
     implementation("com.airbnb.android:epoxy:5.1.4")
     kapt("com.airbnb.android:epoxy-processor:5.1.4")
