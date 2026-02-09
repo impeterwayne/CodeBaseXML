@@ -1,2 +1,0 @@
-com.genesys.core.common
-style Base_Theme_Codebase

@@ -1,2 +1,0 @@
-com.genesys.core.ui
-style Base_Theme_Codebase

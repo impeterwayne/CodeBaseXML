@@ -1,1 +1,0 @@
-com.genesys.core.data

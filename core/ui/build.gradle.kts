@@ -19,8 +19,8 @@ dependencies {
     // AndroidX
     implementation("androidx.core:core-ktx:1.16.0")
     implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    api("com.google.android.material:material:1.12.0")
+    api("androidx.constraintlayout:constraintlayout:2.2.1")
 
     // SDP / SSP
     implementation("com.intuit.sdp:sdp-android:1.1.1")
@@ -34,6 +34,6 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.6.7")
 
     // Epoxy
-    implementation("com.airbnb.android:epoxy:5.1.4")
+    api("com.airbnb.android:epoxy:5.1.4")
     kapt("com.airbnb.android:epoxy-processor:5.1.4")
 }
