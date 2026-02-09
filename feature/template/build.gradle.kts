@@ -1,0 +1,20 @@
+plugins {
+    id("codebase.android.feature")
+    id("kotlin-kapt")
+}
+
+android {
+    namespace = "com.genesys.feature.template"
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation(project(":core:data"))
+
+    // Epoxy
+    implementation("com.airbnb.android:epoxy:5.1.4")
+    kapt("com.airbnb.android:epoxy-processor:5.1.4")
+}

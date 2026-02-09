@@ -1,0 +1,1 @@
+com.genesys.core.model
