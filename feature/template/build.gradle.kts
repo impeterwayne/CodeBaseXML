@@ -1,4 +1,5 @@
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.implementation
 import org.gradle.kotlin.dsl.the
 
 plugins {
@@ -22,6 +23,7 @@ kapt {
 
 dependencies {
     // Epoxy
+    implementation(project(":core:ui"))
     implementation(libs.epoxy)
     kapt(libs.epoxyProcessor)
 }

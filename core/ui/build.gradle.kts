@@ -18,25 +18,16 @@ android {
 }
 
 dependencies {
-    // Core modules
-    implementation(project(":core:common"))
-
     // AndroidX
     implementation(libs.androidxCoreKtx)
     implementation(libs.androidxAppcompat)
     api(libs.material)
     api(libs.androidxConstraintlayout)
 
-    // SDP / SSP
-    implementation(libs.sdpAndroid)
-    implementation(libs.sspAndroid)
-
     // ShapeView
-    implementation(libs.shapeView)
-
+    api(libs.shapeView)
     // Lottie
     implementation(libs.lottie)
-
     // Epoxy
     api(libs.epoxy)
     kapt(libs.epoxyProcessor)

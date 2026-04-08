@@ -1,12 +1,15 @@
 package com.genesys.feature.template.main
 
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.airbnb.epoxy.Carousel
 import com.genesys.core.common.base.BaseFragment
 import com.genesys.core.common.extension.collectRepeatOnLifecycle
 import com.genesys.core.model.template.TemplateCollections
 import com.genesys.core.ui.epoxy.carouselNoSnapBuilder
+import com.google.android.material.button.MaterialButton
+import com.genesys.feature.template.R
 import com.genesys.feature.template.databinding.FragmentMainBinding
 import com.genesys.feature.template.main.epoxy.templateCollectionHeader
 import com.genesys.feature.template.main.epoxy.templateItem
@@ -37,13 +40,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
         viewLifecycleOwner.collectRepeatOnLifecycle(mainViewModel.errorMessage) { error ->
             errorMessage = error
-            viewBinding.layoutError.visibility = if (error != null) View.VISIBLE else View.GONE
-            viewBinding.tvErrorMessage.text = error
+            viewBinding.root.findViewById<View>(R.id.layout_error).visibility = if (error != null) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+            viewBinding.root.findViewById<TextView>(com.genesys.core.ui.R.id.tv_message_state_text).text = error
         }
     }
 
     override fun initListeners() {
-        viewBinding.btnRetry.setOnClickListener {
+        viewBinding.root.findViewById<MaterialButton>(com.genesys.core.ui.R.id.btn_message_state_action).setOnClickListener {
             mainViewModel.onEvent(MainViewModel.MainEvent.LoadTemplates)
         }
     }

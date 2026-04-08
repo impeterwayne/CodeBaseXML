@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ds_color_background">#FFF9F9F9</color>
+    <color name="ds_color_surface">#FFF9F9F9</color>
+    <color name="ds_color_surface_low">#FFF3F3F4</color>
+    <color name="ds_color_surface_container">#FFEEEEEE</color>
+    <color name="ds_color_surface_high">#FFE2E2E2</color>
+    <color name="ds_color_outline">#FF777777</color>
+    <color name="ds_color_outline_variant">#FFC6C6C6</color>
+    <color name="ds_color_primary">#FF000000</color>
+    <color name="ds_color_on_primary">#FFFFFFFF</color>
+    <color name="ds_color_primary_container">#FF3B3B3B</color>
+    <color name="ds_color_on_surface">#FF1A1C1C</color>
+    <color name="ds_color_on_surface_inverse">#FFFFFFFF</color>
+    <color name="ds_color_scrim_overlay">#80000000</color>
+</resources>

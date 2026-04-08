@@ -1,7 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme for design system -->
     <style name="Base.Theme.Codebase" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:colorBackground">@color/ds_color_background</item>
+        <item name="colorSurface">@color/ds_color_surface</item>
+        <item name="colorOnSurface">@color/ds_color_on_surface</item>
+        <item name="colorOutline">@color/ds_color_outline</item>
     </style>
 </resources>

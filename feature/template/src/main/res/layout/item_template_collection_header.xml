@@ -5,25 +5,21 @@
 
     <data />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.genesys.shape.layout.ShapeConstraintLayout
+        style="@style/Widget.Codebase.SectionHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/_16sdp"
-        android:paddingTop="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_4sdp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_collection_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-            android:textColor="?attr/colorOnSurface"
-            android:textStyle="bold"
+            android:textAppearance="@style/Widget.Codebase.SectionHeader.Title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="AI Portrait" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.genesys.shape.layout.ShapeConstraintLayout>
 </layout>

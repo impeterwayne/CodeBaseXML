@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.Codebase.Panel" parent="">
+        <item name="shape_radius">@dimen/ds_radius_none</item>
+        <item name="shape_solidColor">@color/ds_color_surface_low</item>
+        <item name="shape_strokeSize">@dimen/ds_stroke_thin</item>
+        <item name="shape_strokeColor">@color/ds_color_outline</item>
+    </style>
+
+    <style name="Widget.Codebase.Panel.Frame" parent="Widget.Codebase.Panel">
+        <item name="shape_solidColor">@color/ds_color_surface</item>
+        <item name="shape_strokeColor">@color/ds_color_outline_variant</item>
+    </style>
+
+    <style name="Widget.Codebase.Panel.Raised" parent="Widget.Codebase.Panel">
+        <item name="shape_solidColor">@color/ds_color_surface_low</item>
+        <item name="shape_strokeColor">@color/ds_color_outline</item>
+    </style>
+
+    <style name="Widget.Codebase.Panel.Heavy" parent="Widget.Codebase.Panel">
+        <item name="shape_solidColor">@color/ds_color_primary_container</item>
+        <item name="shape_strokeSize">@dimen/ds_stroke_medium</item>
+        <item name="shape_strokeColor">@color/ds_color_primary</item>
+    </style>
+
+    <style name="Widget.Codebase.Panel.MediaCard" parent="Widget.Codebase.Panel">
+        <item name="android:layout_width">@dimen/ds_size_media_card</item>
+        <item name="android:layout_height">@dimen/ds_size_media_card</item>
+    </style>
+
+    <style name="Widget.Codebase.Panel.Container.Raised" parent="Widget.Codebase.Panel.Raised">
+        <item name="android:padding">@dimen/ds_panel_padding</item>
+    </style>
+
+    <style name="Widget.Codebase.Surface.MediaPlaceholder" parent="">
+        <item name="android:background">@color/ds_color_surface_container</item>
+    </style>
+
+    <style name="Widget.Codebase.Scrim.Label" parent="">
+        <item name="android:paddingLeft">@dimen/ds_space_xxs</item>
+        <item name="android:paddingTop">@dimen/ds_space_2xs</item>
+        <item name="android:paddingRight">@dimen/ds_space_xxs</item>
+        <item name="android:paddingBottom">@dimen/ds_space_2xs</item>
+        <item name="android:background">@color/ds_color_scrim_overlay</item>
+        <item name="android:textAppearance">@style/TextAppearance.Codebase.LabelSmall</item>
+    </style>
+
+    <style name="Widget.Codebase.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/ds_color_on_surface</item>
+    </style>
+
+    <style name="Widget.Codebase.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:paddingLeft">@dimen/ds_button_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/ds_button_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/ds_button_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ds_button_padding_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.Codebase.LabelLarge</item>
+        <item name="android:textColor">@color/ds_color_on_primary</item>
+        <item name="backgroundTint">@color/ds_color_primary</item>
+        <item name="strokeColor">@color/ds_color_primary</item>
+        <item name="strokeWidth">@dimen/ds_stroke_thin</item>
+    </style>
+
+    <style name="Widget.Codebase.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:paddingLeft">@dimen/ds_button_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/ds_button_padding_vertical</item>
+        <item name="android:paddingRight">@dimen/ds_button_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/ds_button_padding_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.Codebase.LabelLarge</item>
+        <item name="android:textColor">@color/ds_color_primary</item>
+        <item name="strokeColor">@color/ds_color_primary</item>
+        <item name="strokeWidth">@dimen/ds_stroke_medium</item>
+    </style>
+
+    <style name="Widget.Codebase.SectionHeader" parent="Widget.Codebase.Panel.Frame">
+        <item name="android:paddingLeft">@dimen/ds_space_md</item>
+        <item name="android:paddingTop">@dimen/ds_space_sm</item>
+        <item name="android:paddingRight">@dimen/ds_space_md</item>
+        <item name="android:paddingBottom">@dimen/ds_space_xxs</item>
+    </style>
+
+    <style name="Widget.Codebase.SectionHeader.Title" parent="TextAppearance.Codebase.TitleMedium.Emphasis" />
+
+    <style name="Widget.Codebase.Panel.Message" parent="Widget.Codebase.Panel.Container.Raised">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Widget.Codebase.PageFrame.Root" parent="">
+        <item name="android:background">@color/ds_color_surface_high</item>
+        <item name="android:padding">@dimen/ds_page_gutter</item>
+    </style>
+
+    <style name="Widget.Codebase.PageFrame.Content" parent="Widget.Codebase.Panel.Frame">
+        <item name="android:padding">@dimen/ds_page_content_padding</item>
+    </style>
+</resources>

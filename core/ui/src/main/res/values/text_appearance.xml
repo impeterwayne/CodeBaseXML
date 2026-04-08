@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Codebase.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/ds_color_on_surface</item>
+    </style>
+
+    <style name="TextAppearance.Codebase.TitleMedium.Emphasis" parent="TextAppearance.Codebase.TitleMedium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Codebase.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/ds_color_on_surface</item>
+    </style>
+
+    <style name="TextAppearance.Codebase.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/ds_color_on_surface_inverse</item>
+    </style>
+
+    <style name="TextAppearance.Codebase.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Codebase.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/ds_color_on_surface</item>
+    </style>
+</resources>

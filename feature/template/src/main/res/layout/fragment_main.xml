@@ -6,66 +6,56 @@
     <data />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Widget.Codebase.PageFrame.Root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.genesys.feature.template.main.MainFragment">
 
-        <!-- Epoxy RecyclerView -->
-        <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/rcv_templates"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_page_content"
+            style="@style/Widget.Codebase.PageFrame.Content"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_8sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Loading indicator -->
-        <ProgressBar
-            android:id="@+id/progress_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+            <!-- Epoxy RecyclerView -->
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/rcv_templates"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Error / Empty state -->
-        <LinearLayout
-            android:id="@+id/layout_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone">
-
-            <TextView
-                android:id="@+id/tv_error_message"
+            <!-- Loading indicator -->
+            <ProgressBar
+                android:id="@+id/progress_loading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-                tools:text="Something went wrong" />
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_retry"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:text="Retry" />
+            <!-- Error / Empty state -->
+            <include
+                android:id="@+id/layout_error"
+                android:visibility="gone"
+                layout="@layout/view_message_state"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

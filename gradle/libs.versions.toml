@@ -35,9 +35,7 @@ riveAndroid = "10.4.1"
 roomRuntime = "2.6.1"
 sandwich = "2.0.8"
 sandwichRetrofit = "2.0.8"
-sdpAndroid = "1.1.1"
 shapeView = "1.0.0"
-sspAndroid = "1.1.1"
 startupRuntime = "1.2.0"
 timber = "5.0.1"
 utilcodex = "1.31.1"
@@ -88,9 +86,7 @@ retrofit2KotlinCoroutinesAdapter = { module = "com.jakewharton.retrofit:retrofit
 rive-android = { module = "app.rive:rive-android", version.ref = "riveAndroid" }
 sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 sandwichRetrofit = { module = "com.github.skydoves:sandwich-retrofit", version.ref = "sandwichRetrofit" }
-sdpAndroid = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
 shapeView = { module = "io.github.impeterwayne:shape-view", version.ref = "shapeView" }
-sspAndroid = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 utilcodex = { module = "com.blankj:utilcodex", version.ref = "utilcodex" }
 xxpermissionKtx = { module = "io.github.impeterwayne:xxpermission-ktx", version.ref = "xxpermissionKtx" }

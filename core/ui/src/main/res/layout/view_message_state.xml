@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.genesys.shape.layout.ShapeConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Codebase.Panel.Message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_message_state_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ds_section_header_spacing"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Codebase.BodyMedium"
+        app:layout_constraintBottom_toTopOf="@id/btn_message_state_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Something went wrong" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_message_state_action"
+        style="@style/Widget.Codebase.Button.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ds_action_retry"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_message_state_text" />
+
+</com.genesys.shape.layout.ShapeConstraintLayout>

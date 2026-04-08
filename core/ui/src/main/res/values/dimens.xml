@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ds_space_2xs">2dp</dimen>
+    <dimen name="ds_space_xxs">4dp</dimen>
+    <dimen name="ds_space_xs">8dp</dimen>
+    <dimen name="ds_space_sm">12dp</dimen>
+    <dimen name="ds_space_md">16dp</dimen>
+    <dimen name="ds_space_lg">24dp</dimen>
+    <dimen name="ds_space_xl">32dp</dimen>
+    <dimen name="ds_space_2xl">40dp</dimen>
+
+    <dimen name="ds_size_media_card">100dp</dimen>
+    <dimen name="ds_size_badge_sm">18dp</dimen>
+
+    <dimen name="ds_stroke_thin">1dp</dimen>
+    <dimen name="ds_stroke_medium">2dp</dimen>
+
+    <dimen name="ds_radius_none">0dp</dimen>
+
+    <dimen name="ds_button_padding_horizontal">24dp</dimen>
+    <dimen name="ds_button_padding_vertical">12dp</dimen>
+
+    <dimen name="ds_panel_padding">16dp</dimen>
+    <dimen name="ds_page_gutter">16dp</dimen>
+    <dimen name="ds_page_content_padding">16dp</dimen>
+    <dimen name="ds_section_header_spacing">8dp</dimen>
+</resources>
