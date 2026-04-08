@@ -1,8 +1,13 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
     id("codebase.android.library")
     id("codebase.android.hilt")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.core.network"
@@ -20,22 +25,22 @@ dependencies {
     implementation(project(":core:model"))
 
     // OkHttp
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
+    implementation(platform(libs.okhttpBom))
+    implementation(libs.okhttp)
+    implementation(libs.loggingInterceptor)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit2KotlinCoroutinesAdapter)
+    implementation(libs.converterMoshi)
 
     // Sandwich
-    implementation("com.github.skydoves:sandwich:2.0.8")
-    implementation("com.github.skydoves:sandwich-retrofit:2.0.8")
+    implementation(libs.sandwich)
+    implementation(libs.sandwichRetrofit)
 
     // Moshi
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
-    implementation("com.squareup.moshi:moshi:1.15.1")
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-    implementation("com.squareup.moshi:moshi-adapters:1.15.1")
+    ksp(libs.moshiKotlinCodegen)
+    implementation(libs.moshi)
+    implementation(libs.moshiKotlin)
+    implementation(libs.moshiAdapters)
 }

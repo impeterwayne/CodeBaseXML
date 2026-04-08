@@ -1,7 +1,12 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
     id("codebase.android.feature")
-    id("kotlin-kapt")
+    alias(libs.plugins.kapt)
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.feature.template"
@@ -17,6 +22,6 @@ kapt {
 
 dependencies {
     // Epoxy
-    implementation("com.airbnb.android:epoxy:5.1.4")
-    kapt("com.airbnb.android:epoxy-processor:5.1.4")
+    implementation(libs.epoxy)
+    kapt(libs.epoxyProcessor)
 }

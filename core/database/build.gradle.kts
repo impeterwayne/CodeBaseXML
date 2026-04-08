@@ -1,9 +1,14 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
     id("codebase.android.library")
     id("codebase.android.hilt")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.ksp)
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.core.database"
@@ -19,15 +24,15 @@ dependencies {
     implementation(project(":core:model"))
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidxRoomRuntime)
+    ksp(libs.androidxRoomCompiler)
+    implementation(libs.androidxRoomKtx)
 
     // Moshi (for type converters)
-    implementation("com.squareup.moshi:moshi:1.15.1")
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation(libs.moshi)
+    implementation(libs.moshiKotlin)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(libs.kotlinxCoroutinesCore)
+    implementation(libs.kotlinxCoroutinesAndroid)
 }

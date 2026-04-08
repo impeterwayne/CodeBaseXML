@@ -24,7 +24,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Codebase"
+rootProject.name = "CodebaseXML"
 
 include(":app")
 

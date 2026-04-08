@@ -1,7 +1,12 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
     id("codebase.android.library")
-    id("kotlin-kapt")
+    alias(libs.plugins.kapt)
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.core.common"
@@ -13,32 +18,32 @@ android {
 
 dependencies {
     // Timber
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.16.0")
-    api("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("androidx.activity:activity:1.10.1")
-    api("androidx.fragment:fragment-ktx:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation(libs.androidxCoreKtx)
+    api(libs.androidxAppcompat)
+    implementation(libs.material)
+    implementation(libs.androidxConstraintlayout)
+    implementation(libs.androidxActivity)
+    api(libs.androidxFragmentKtx)
+    implementation(libs.androidxLifecycleViewmodelKtx)
 
     // ImmersionBar
-    implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
-    implementation("com.geyifeng.immersionbar:immersionbar-ktx:3.2.2")
-    implementation("com.geyifeng.immersionbar:immersionbar-components:3.2.2")
+    implementation(libs.immersionbar)
+    implementation(libs.immersionbarKtx)
+    implementation(libs.immersionbarComponents)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(libs.kotlinxCoroutinesCore)
+    implementation(libs.kotlinxCoroutinesAndroid)
 
     // Glide (used by ImageViewExt)
-    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.glide)
 
     // Gson (used by GsonExt)
-    implementation("com.google.code.gson:gson:2.13.1")
+    implementation(libs.gson)
 
     // Lifecycle runtime (used by FlowExt)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation(libs.androidxLifecycleRuntimeKtx)
 }

@@ -1,11 +1,16 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp")
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlinParcelize)
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.codebase"
@@ -60,28 +65,28 @@ dependencies {
     implementation(project(":feature:template"))
 
     // ── Android Core ──
-    implementation("androidx.core:core-ktx:1.16.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.activity:activity:1.10.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-    implementation("androidx.startup:startup-runtime:1.2.0")
-    implementation("androidx.multidex:multidex:2.0.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation(libs.androidxCoreKtx)
+    implementation(libs.androidxAppcompat)
+    implementation(libs.material)
+    implementation(libs.androidxActivity)
+    implementation(libs.androidxConstraintlayout)
+    implementation(libs.androidxStartupRuntime)
+    implementation(libs.androidxMultidex)
+    implementation(libs.androidxLifecycleViewmodelKtx)
+    implementation(libs.androidxFragmentKtx)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.53")
-    ksp("com.google.dagger:hilt-compiler:2.53")
+    implementation(libs.hiltAndroid)
+    ksp(libs.hiltCompiler)
 
     // MMKV (initialized in App.kt)
-    implementation("com.tencent:mmkv:1.3.14")
+    implementation(libs.mmkv)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 
     // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidxJunit)
+    androidTestImplementation(libs.androidxEspressoCore)
 }

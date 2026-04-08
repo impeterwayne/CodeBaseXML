@@ -1,7 +1,12 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
 plugins {
     id("codebase.android.library")
     id("codebase.android.hilt")
 }
+
+val libs = the<LibrariesForLibs>()
 
 android {
     namespace = "com.genesys.core.data"
@@ -15,16 +20,16 @@ dependencies {
     implementation(project(":core:common"))
 
     // MMKV
-    implementation("com.tencent:mmkv:1.3.14")
+    implementation(libs.mmkv)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation(libs.kotlinxCoroutinesCore)
+    implementation(libs.kotlinxCoroutinesAndroid)
 
     // Sandwich
-    implementation("com.github.skydoves:sandwich:2.0.8")
-    implementation("com.github.skydoves:sandwich-retrofit:2.0.8")
+    implementation(libs.sandwich)
+    implementation(libs.sandwichRetrofit)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(libs.timber)
 }
