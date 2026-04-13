@@ -26,7 +26,7 @@ abstract class BaseActivity<VB> : AppCompatActivity()
             onPerformBackPressed?.invoke()
         }
     }
-    protected open fun statusBarInsetTargets(): List<View> = emptyList()
+    protected open fun statusBarInsetTarget(): View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setupInit()
@@ -42,17 +42,13 @@ abstract class BaseActivity<VB> : AppCompatActivity()
         initObservers()
     }
     protected open fun isForceDarkMode() : Boolean = true
-    protected open fun isFitsSystemWindows(): Boolean = true
+    protected open fun isFitsSystemWindows(): Boolean = false
     protected open fun isHideSystemBars(): Boolean = true
 
     private fun initImmersiveBar() {
         immersionBar {
             transparentBar()
-            if(isForceDarkMode()){
-                statusBarDarkFont(true)
-            }else{
-                autoDarkModeEnable(true)
-            }
+            statusBarDarkFont(isForceDarkMode())
             fitsSystemWindows(isFitsSystemWindows())
             if (isHideSystemBars()) {
                 hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR)
@@ -88,18 +84,11 @@ abstract class BaseActivity<VB> : AppCompatActivity()
     }
     private fun setupWindowInsets() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        val targets = statusBarInsetTargets()
-        if (targets.isNotEmpty()) {
-            applyStatusBarPadding(*targets.toTypedArray())
-        } else {
-            applyStatusBarPadding()
-        }
+        applyStatusBarPadding(statusBarInsetTarget())
     }
 
-    private fun applyStatusBarPadding(vararg views: View) {
-        views.forEach { view ->
-            fitsTitleBar(view)
-        }
+    private fun applyStatusBarPadding(view: View?) {
+        view?.let { fitsTitleBar(it) }
     }
 
     override fun onDestroy() {

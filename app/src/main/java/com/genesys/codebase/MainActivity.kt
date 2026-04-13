@@ -15,7 +15,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
 
-    override fun statusBarInsetTargets(): List<View> = listOf(viewBinding.toolbar)
+    override fun statusBarInsetTarget(): View? = viewBinding.toolbar
 
     override fun initViews(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
