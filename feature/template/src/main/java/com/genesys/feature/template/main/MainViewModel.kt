@@ -8,6 +8,7 @@ import com.genesys.core.domain.usecase.template.GetAllTemplatesUseCase
 import com.genesys.core.model.template.Template
 import com.genesys.core.model.template.TemplateCollections
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,8 +35,12 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    init {
+        loadTemplates()
+    }
+
     private fun loadTemplates() {
-        launchBlock {
+        launchBlock(Dispatchers.IO) {
             getAllTemplatesUseCase().collect { result ->
                 result.doOnLoading {
                     _isLoading.value = true

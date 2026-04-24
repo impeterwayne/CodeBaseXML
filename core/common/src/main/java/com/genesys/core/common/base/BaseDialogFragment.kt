@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.viewbinding.ViewBinding
 
 abstract class BaseDialogFragment<VB>(
     private val inflate: Inflater<VB>
-) : DialogFragment() where VB : ViewDataBinding {
+) : DialogFragment() where VB : ViewBinding {
 
     private var _viewBinding: VB? = null
     protected val viewBinding get() = _viewBinding!!

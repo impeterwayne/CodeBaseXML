@@ -3,7 +3,6 @@ import org.gradle.kotlin.dsl.the
 
 plugins {
     id("codebase.android.library")
-    alias(libs.plugins.kapt)
 }
 
 val libs = the<LibrariesForLibs>()
@@ -12,7 +11,7 @@ android {
     namespace = "com.genesys.core.common"
 
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 }
 

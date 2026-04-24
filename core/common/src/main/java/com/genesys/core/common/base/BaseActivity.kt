@@ -6,7 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.fitsTitleBar
 import com.gyf.immersionbar.ktx.immersionBar
@@ -14,8 +14,7 @@ import com.gyf.immersionbar.ktx.showStatusBar
 
 typealias OnPerformBackPressed = () -> Unit
 
-abstract class BaseActivity<VB> : AppCompatActivity()
-        where VB : ViewDataBinding {
+abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
 
     protected val viewBinding: VB by this.getLazyViewBinding()
     abstract fun getLazyViewBinding(): Lazy<VB>
@@ -32,7 +31,6 @@ abstract class BaseActivity<VB> : AppCompatActivity()
         setupInit()
         super.onCreate(savedInstanceState)
 
-        viewBinding.lifecycleOwner = this@BaseActivity
         registerBackPressedDispatcher()
         setupWindowInsets()
         initViews(savedInstanceState)

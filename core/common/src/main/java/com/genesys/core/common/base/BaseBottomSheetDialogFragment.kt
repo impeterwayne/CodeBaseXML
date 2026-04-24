@@ -8,13 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentManager
+import androidx.viewbinding.ViewBinding
 import com.genesys.core.common.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 abstract class BaseBottomSheetDialogFragment<T>(private val inflate: Inflater<T>) :
-    BottomSheetDialogFragment() where T : ViewDataBinding {
+    BottomSheetDialogFragment() where T : ViewBinding {
 
     private var _viewbinding: T? = null
     protected val viewBinding get() = _viewbinding!!

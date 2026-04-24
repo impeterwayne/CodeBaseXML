@@ -34,7 +34,6 @@ abstract class BaseEpoxyViewBindingHolder<in T : ViewBinding> : EpoxyModelWithHo
     }
 }
 
-// Static cache of a method pointer for each type of item used.
 private val sBindingMethodByClass = ConcurrentHashMap<Class<*>, Method>()
 
 @Suppress("UNCHECKED_CAST")
@@ -54,13 +53,10 @@ private fun getSuperclassParameterizedType(klass: Class<*>): ParameterizedType {
 }
 
 class ViewBindingHolder(private val epoxyModelClass: Class<*>) : EpoxyHolder() {
-    // Using reflection to get the static binding method.
-    // Lazy so it's computed only once by instance, when the 1st ViewHolder is actually created.
     private val bindingMethod by lazy { getBindMethodFrom(epoxyModelClass) }
 
     internal lateinit var viewBinding: ViewBinding
     override fun bindView(itemView: View) {
-        // The 1st param is null because the binding method is static.
         viewBinding = bindingMethod.invoke(null, itemView) as ViewBinding
     }
 }

@@ -1,6 +1,5 @@
 package com.genesys.core.common.extension
 
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -15,12 +14,6 @@ inline fun <T : Any> diffItemCallback(
         override fun areContentsTheSame(oldItem: T, newItem: T) = contents(oldItem, newItem)
         override fun getChangePayload(oldItem: T, newItem: T) = getChangePayload(oldItem, newItem)
     }
-}
-
-abstract class DataBindingViewHolder<T : Any, VB : ViewDataBinding>(val dataBinding: VB) :
-    RecyclerView.ViewHolder(dataBinding.root) {
-
-    abstract fun onBind(item: T)
 }
 
 abstract class ViewBindingViewHolder<T : Any, VB : ViewBinding>(val viewBinding: VB) :
