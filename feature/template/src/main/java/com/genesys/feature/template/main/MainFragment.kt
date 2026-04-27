@@ -4,10 +4,10 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.airbnb.epoxy.Carousel
 import com.genesys.core.common.base.BaseFragment
+import com.genesys.core.common.base.Result
 import com.genesys.core.common.extension.collectRepeatOnLifecycle
 import com.genesys.core.model.template.TemplateCollections
 import com.genesys.core.ui.epoxy.carouselNoSnapBuilder
-import com.genesys.feature.template.R
 import com.genesys.feature.template.databinding.FragmentMainBinding
 import com.genesys.feature.template.main.epoxy.templateCollectionHeader
 import com.genesys.feature.template.main.epoxy.templateItem
@@ -18,38 +18,50 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    private var isLoading = false
-    private var errorMessage: String? = null
-
     override fun initViews() {
 
     }
 
     override fun initObservers() {
-        viewLifecycleOwner.collectRepeatOnLifecycle(mainViewModel.templateCollections) { collections ->
-            setupEpoxy(collections)
-        }
-
-        viewLifecycleOwner.collectRepeatOnLifecycle(mainViewModel.isLoading) { loading ->
-            isLoading = loading
-            viewBinding.progressLoading.visibility = if (loading) View.VISIBLE else View.GONE
-            viewBinding.rcvTemplates.visibility = if (loading) View.GONE else View.VISIBLE
-        }
-
-        viewLifecycleOwner.collectRepeatOnLifecycle(mainViewModel.errorMessage) { error ->
-            errorMessage = error
-            viewBinding.layoutError.root.visibility = if (error != null) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
-            viewBinding.layoutError.tvMessageStateText.text = error
+        viewLifecycleOwner.collectRepeatOnLifecycle(mainViewModel.result) { result ->
+            renderResult(result)
         }
     }
 
     override fun initListeners() {
         viewBinding.layoutError.btnMessageStateAction.setOnClickListener {
             mainViewModel.onEvent(MainViewModel.MainEvent.LoadTemplates)
+        }
+    }
+
+    private fun renderResult(result: Result<List<TemplateCollections>>) {
+        when (result) {
+            is Result.Initial -> {
+                viewBinding.progressLoading.visibility = View.GONE
+                viewBinding.rcvTemplates.visibility = View.VISIBLE
+                viewBinding.layoutError.root.visibility = View.GONE
+            }
+
+            is Result.Loading -> {
+                viewBinding.progressLoading.visibility = View.VISIBLE
+                viewBinding.rcvTemplates.visibility = View.GONE
+                viewBinding.layoutError.root.visibility = View.GONE
+            }
+
+            is Result.Success -> {
+                viewBinding.progressLoading.visibility = View.GONE
+                viewBinding.rcvTemplates.visibility = View.VISIBLE
+                viewBinding.layoutError.root.visibility = View.GONE
+                setupEpoxy(result.data)
+            }
+
+            is Result.Error -> {
+                viewBinding.progressLoading.visibility = View.GONE
+                viewBinding.rcvTemplates.visibility = View.VISIBLE
+                viewBinding.layoutError.root.visibility = View.VISIBLE
+                viewBinding.layoutError.tvMessageStateText.text =
+                    result.msg ?: "Failed to load templates"
+            }
         }
     }
 

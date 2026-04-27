@@ -1,9 +1,7 @@
 package com.genesys.feature.template.main
 
 import com.genesys.core.common.base.BaseViewModel
-import com.genesys.core.common.base.doOnError
-import com.genesys.core.common.base.doOnLoading
-import com.genesys.core.common.base.doOnSuccess
+import com.genesys.core.common.base.Result
 import com.genesys.core.domain.usecase.template.GetAllTemplatesUseCase
 import com.genesys.core.model.template.Template
 import com.genesys.core.model.template.TemplateCollections
@@ -12,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,14 +18,8 @@ class MainViewModel @Inject constructor(
     private val getAllTemplatesUseCase: GetAllTemplatesUseCase
 ) : BaseViewModel<MainViewModel.MainEvent>() {
 
-    private val _templateCollections = MutableStateFlow<List<TemplateCollections>>(emptyList())
-    val templateCollections: StateFlow<List<TemplateCollections>> = _templateCollections.asStateFlow()
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-
-    private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
+    private val _result = MutableStateFlow<Result<List<TemplateCollections>>>(Result.Initial())
+    val result: StateFlow<Result<List<TemplateCollections>>> = _result.asStateFlow()
 
     override fun onEvent(state: MainEvent) {
         when (state) {
@@ -42,18 +35,7 @@ class MainViewModel @Inject constructor(
     private fun loadTemplates() {
         launchBlock(Dispatchers.IO) {
             getAllTemplatesUseCase().collect { result ->
-                result.doOnLoading {
-                    _isLoading.value = true
-                    _errorMessage.value = null
-                }
-                result.doOnSuccess { data ->
-                    _isLoading.value = false
-                    _templateCollections.value = data
-                }
-                result.doOnError { msg ->
-                    _isLoading.value = false
-                    _errorMessage.value = msg ?: "Failed to load templates"
-                }
+                _result.update{result}
             }
         }
     }
