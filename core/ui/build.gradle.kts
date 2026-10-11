@@ -4,7 +4,7 @@ import org.gradle.kotlin.dsl.the
 plugins {
     id("codebase.android.library")
     alias(libs.plugins.kotlinParcelize)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.legacy.kapt)
 }
 
 val libs = the<LibrariesForLibs>()
@@ -30,5 +30,5 @@ dependencies {
     implementation(libs.lottie)
     // Epoxy
     api(libs.epoxy)
-    ksp(libs.epoxyProcessor)
+    kapt(libs.epoxyProcessor)
 }

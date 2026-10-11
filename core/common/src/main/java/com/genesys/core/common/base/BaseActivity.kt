@@ -26,7 +26,9 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
         }
     }
     protected open fun statusBarInsetTarget(): View? = null
-
+    protected open fun isForceDarkMode() : Boolean = true
+    protected open fun isFitsSystemWindows(): Boolean = false
+    protected open fun isHideSystemBars(): Boolean = true
     override fun onCreate(savedInstanceState: Bundle?) {
         setupInit()
         super.onCreate(savedInstanceState)
@@ -39,9 +41,7 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
         initImmersiveBar()
         initObservers()
     }
-    protected open fun isForceDarkMode() : Boolean = true
-    protected open fun isFitsSystemWindows(): Boolean = false
-    protected open fun isHideSystemBars(): Boolean = true
+
 
     private fun initImmersiveBar() {
         immersionBar {

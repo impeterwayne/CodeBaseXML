@@ -1,3 +1,4 @@
+import com.android.build.api.variant.BuildConfigField
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.kotlin.dsl.the
 
@@ -15,9 +16,18 @@ android {
     buildFeatures {
         buildConfig = true
     }
+}
 
-    defaultConfig {
-        buildConfigField("String", "BASE_URL", "\"https://ai-service.backendvn.com/\"")
+androidComponents {
+    onVariants { variant ->
+        variant.buildConfigFields?.put(
+            "BASE_URL",
+            BuildConfigField(
+                type = "String",
+                value = "\"https://ai-service.backendvn.com/\"",
+                comment = "Backend API base URL"
+            )
+        )
     }
 }
 

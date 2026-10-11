@@ -4,6 +4,7 @@ import org.gradle.kotlin.dsl.the
 
 plugins {
     id("codebase.android.feature")
+    alias(libs.plugins.legacy.kapt)
 }
 
 val libs = the<LibrariesForLibs>()
@@ -20,5 +21,5 @@ dependencies {
     // Epoxy
     implementation(project(":core:ui"))
     implementation(libs.epoxy)
-    ksp(libs.epoxyProcessor)
+    kapt(libs.epoxyProcessor)
 }
