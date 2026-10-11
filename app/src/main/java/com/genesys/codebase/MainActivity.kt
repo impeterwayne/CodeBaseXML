@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.genesys.codebase.databinding.ActivityMainBinding
-import com.genesys.core.common.base.BaseActivity
+import com.genesys.core.ui.base.BaseActivity
 import com.genesys.feature.template.main.MainFragment
 import dagger.hilt.android.AndroidEntryPoint
 

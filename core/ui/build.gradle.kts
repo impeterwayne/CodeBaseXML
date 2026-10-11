@@ -18,17 +18,20 @@ android {
 }
 
 dependencies {
-    // AndroidX
     implementation(libs.androidxCoreKtx)
     implementation(libs.androidxAppcompat)
     api(libs.material)
     api(libs.androidxConstraintlayout)
+    implementation(libs.androidxActivity)
+    api(libs.androidxFragmentKtx)
+    implementation(libs.androidxLifecycleViewmodelKtx)
+    implementation(libs.androidxLifecycleRuntimeKtx)
+    implementation(libs.immersionbar)
+    implementation(libs.immersionbarKtx)
+    implementation(libs.immersionbarComponents)
 
-    // ShapeView
     api(libs.shapeView)
-    // Lottie
     implementation(libs.lottie)
-    // Epoxy
     api(libs.epoxy)
     ksp(libs.epoxyProcessor)
 }

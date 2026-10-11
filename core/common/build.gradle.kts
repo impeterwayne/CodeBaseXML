@@ -16,10 +16,8 @@ android {
 }
 
 dependencies {
-    // Timber
     implementation(libs.timber)
 
-    // AndroidX
     implementation(libs.androidxCoreKtx)
     api(libs.androidxAppcompat)
     implementation(libs.material)
@@ -28,21 +26,12 @@ dependencies {
     api(libs.androidxFragmentKtx)
     implementation(libs.androidxLifecycleViewmodelKtx)
 
-    // ImmersionBar
-    implementation(libs.immersionbar)
-    implementation(libs.immersionbarKtx)
-    implementation(libs.immersionbarComponents)
-
-    // Coroutines
     implementation(libs.kotlinxCoroutinesCore)
     implementation(libs.kotlinxCoroutinesAndroid)
 
-    // Glide (used by ImageViewExt)
     implementation(libs.glide)
 
-    // Gson (used by GsonExt)
     implementation(libs.gson)
 
-    // Lifecycle runtime (used by FlowExt)
     implementation(libs.androidxLifecycleRuntimeKtx)
 }

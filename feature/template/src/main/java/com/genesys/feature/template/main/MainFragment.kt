@@ -3,7 +3,7 @@ package com.genesys.feature.template.main
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.airbnb.epoxy.Carousel
-import com.genesys.core.common.base.BaseFragment
+import com.genesys.core.ui.base.BaseFragment
 import com.genesys.core.common.base.Result
 import com.genesys.core.common.extension.collectRepeatOnLifecycle
 import com.genesys.core.model.template.TemplateCollections

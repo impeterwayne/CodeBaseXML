@@ -1,5 +1,6 @@
-package com.genesys.core.common.base
+package com.genesys.core.ui.base
 
+import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -7,31 +8,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
+import com.genesys.core.ui.R
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseDialogFragment<VB>(
-    private val inflate: Inflater<VB>
-) : DialogFragment() where VB : ViewBinding {
+abstract class BaseBottomSheetDialogFragment<T>(private val inflate: Inflater<T>) :
+    BottomSheetDialogFragment() where T : ViewBinding {
 
-    private var _viewBinding: VB? = null
-    protected val viewBinding get() = _viewBinding!!
+    private var _viewbinding: T? = null
+    protected val viewBinding get() = _viewbinding!!
 
     abstract val TAG: String
 
     var isCreated: Boolean = false
         private set
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return super.onCreateDialog(savedInstanceState).apply {
+            setCanceledOnTouchOutside(dismissWhenTouchOutside())
+        }
+    }
+
+    protected open fun dismissWhenTouchOutside(): Boolean = true
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflate(inflater, container, false).also { _viewBinding = it }.root.let {
-        if (it.parent != null) {
-            ((it.parent) as ViewGroup).removeView(it)
+    ): View {
+        setStyle(STYLE_NORMAL, R.style.Base_Theme_Codebase)
+        return inflate(inflater, container, false).also { _viewbinding = it }.root.let { rootView ->
+            rootView.parent?.runCatching {
+                (this as ViewGroup).removeView(rootView)
+            }
+            rootView
         }
-        return@let it
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,37 +68,20 @@ abstract class BaseDialogFragment<VB>(
     }
 
     abstract fun initViews()
-    protected open fun initObservers() {}
-    protected open fun initListeners() {}
+    abstract fun initObservers()
+    abstract fun initListeners()
 
     protected open fun dimAmount(): Float = 0.6f
-    protected open fun width(): Float = 0.95f
 
     fun show(fragmentManager: FragmentManager) {
-        if (isAdded || isVisible || isRemoving || isStateSaved) {
+        if (this.isAdded || this.isRemoving || fragmentManager.isStateSaved) {
             return
         }
         this.show(fragmentManager, TAG)
     }
 
-    fun setDialogCancelable(isCancelable: Boolean) {
-        this.isCancelable = isCancelable
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
-        isCreated = false
-        _viewBinding = null
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        dialog?.window?.let { window ->
-            val params: WindowManager.LayoutParams = window.attributes
-            val displayMetrics = context?.resources?.displayMetrics
-            params.width = (displayMetrics?.widthPixels?.times(width()))?.toInt() ?: params.width
-            window.attributes = params
-        }
+        _viewbinding = null
     }
 }

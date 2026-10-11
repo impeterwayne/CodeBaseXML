@@ -1,4 +1,4 @@
-package com.genesys.core.common.base
+package com.genesys.core.ui.base
 
 import android.os.Bundle
 import android.view.View
@@ -36,12 +36,10 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
         registerBackPressedDispatcher()
         setupWindowInsets()
         initViews(savedInstanceState)
-        initAds()
         initListeners()
         initImmersiveBar()
         initObservers()
     }
-
 
     private fun initImmersiveBar() {
         immersionBar {
@@ -72,7 +70,6 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
     protected open fun setupInit() = Unit
 
     abstract fun initViews(savedInstanceState: Bundle?)
-    protected open fun initAds() = Unit
     protected open fun initObservers() = Unit
 
     protected open fun initListeners() = Unit

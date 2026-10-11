@@ -1,4 +1,4 @@
-package com.genesys.core.common.base
+package com.genesys.core.ui.base
 
 import androidx.viewbinding.ViewBinding
 
