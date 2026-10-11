@@ -13,4 +13,10 @@
     <color name="ds_color_on_surface">#FF1A1C1C</color>
     <color name="ds_color_on_surface_inverse">#FFFFFFFF</color>
     <color name="ds_color_scrim_overlay">#80000000</color>
+
+    <color name="color_bg_container">#FFFFFF</color>
+    <color name="color_neo_border">#000000</color>
+    <color name="color_neo_selected_orange">#FF5A26</color>
+    <color name="color_neo_text">#000000</color>
+    <color name="color_neo_action_button_bg">#FFE000</color>
 </resources>

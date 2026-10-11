@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="template_premium_badge">Premium</string>
+    <string name="template_header_title">Templates</string>
+    <string name="template_header_subtitle">Search Pokémon to view stats</string>
+    <string name="template_search_placeholder">Search Pokémon…</string>
+    <string name="cd_pokemon_image">Pokémon image</string>
+    <string name="template_failed_to_load">Failed to load Pokémon</string>
     <string name="template_retry">Retry</string>
+    <string name="pokedex_pokedex">Pokedex</string>
+    <string name="pokedex_search_subtitle">Search Pokémon to view stats</string>
+    <string name="pokedex_search_placeholder">Search Pokémon…</string>
 </resources>

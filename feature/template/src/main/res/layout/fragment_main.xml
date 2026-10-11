@@ -2,55 +2,116 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Codebase.PageFrame.Root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ds_color_background"
     tools:context="com.genesys.feature.template.main.MainFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_page_content"
-        style="@style/Widget.Codebase.PageFrame.Content"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ds_space_md"
+        android:layout_marginTop="@dimen/ds_space_md"
+        android:layout_marginEnd="@dimen/ds_space_md"
+        android:text="@string/template_header_title"
+        android:textAppearance="@style/TextAppearance.Codebase.TitleMedium.Emphasis"
+        android:textColor="@color/ds_color_on_surface"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ds_space_md"
+        android:layout_marginTop="@dimen/ds_space_xxs"
+        android:layout_marginEnd="@dimen/ds_space_md"
+        android:text="@string/template_header_subtitle"
+        android:textAppearance="@style/TextAppearance.Codebase.BodyMedium"
+        android:textColor="@color/ds_color_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <com.genesys.shape.layout.ShapeLinearLayout
+        android:id="@+id/layout_search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ds_space_md"
+        android:layout_marginTop="@dimen/ds_space_md"
+        android:layout_marginEnd="@dimen/ds_space_md"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/ds_space_md"
+        android:paddingVertical="@dimen/ds_space_sm"
+        app:shape_radius="14dp"
+        app:shape_solidColor="@color/ds_color_surface"
+        app:shape_strokeColor="@color/ds_color_primary"
+        app:shape_strokeSize="1.5dp"
+        app:shape_effect1Type="dropShadow"
+        app:shape_effect1Color="@color/ds_color_primary"
+        app:shape_effect1OffsetX="3dp"
+        app:shape_effect1OffsetY="3dp"
+        app:shape_effect1Blur="0dp"
+        app:shape_effectPadContent="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/template_search_placeholder"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/ds_color_on_surface"
+            android:textColorHint="@color/ds_color_outline"
+            android:textSize="16sp" />
+
+    </com.genesys.shape.layout.ShapeLinearLayout>
+
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/rcv_templates"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/ds_space_md"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/ds_space_xs"
+        android:paddingBottom="@dimen/ds_space_md"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/layout_search_bar" />
 
-        <!-- Epoxy RecyclerView -->
-        <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/rcv_templates"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
+        tools:visibility="visible" />
 
-        <!-- Loading indicator -->
-        <ProgressBar
-            android:id="@+id/progress_loading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
-        <!-- Error / Empty state -->
-        <include
-            android:id="@+id/layout_error"
-            android:visibility="gone"
-            layout="@layout/view_message_state"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/view_message_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/ds_space_md"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_search_bar"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ds_action_retry">Retry</string>
+
+    <string name="nav_pokedex">Templates</string>
+    <string name="nav_feature1">Component</string>
+    <string name="nav_feature2">Inbox</string>
+    <string name="nav_feature3">Settings</string>
+    <string name="nav_primary">Primary</string>
+    <string name="nav_primary_clicked">Primary Clicked!</string>
 </resources>

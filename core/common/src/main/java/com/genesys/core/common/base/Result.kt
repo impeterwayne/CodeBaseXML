@@ -4,7 +4,6 @@ sealed class Result<T> {
     data class Success<T>(val data: T) : Result<T>()
     data class Error<T>(val msg: String? = null) : Result<T>()
     data class Loading<T>(val info: String = "") : Result<T>()
-    class Initial<T>() : Result<T>()
 }
 
 inline fun <T> Result<T>.doOnSuccess(

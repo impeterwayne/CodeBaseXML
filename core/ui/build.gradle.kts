@@ -27,8 +27,6 @@ dependencies {
     implementation(libs.androidxLifecycleViewmodelKtx)
     implementation(libs.androidxLifecycleRuntimeKtx)
     implementation(libs.immersionbar)
-    implementation(libs.immersionbarKtx)
-    implementation(libs.immersionbarComponents)
 
     api(libs.shapeView)
     implementation(libs.lottie)

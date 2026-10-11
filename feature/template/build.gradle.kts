@@ -17,8 +17,9 @@ android {
 }
 
 dependencies {
-    // Epoxy
     implementation(project(":core:ui"))
     implementation(libs.epoxy)
     ksp(libs.epoxyProcessor)
+    implementation(libs.orbitViewmodel)
+    implementation(libs.glide)
 }

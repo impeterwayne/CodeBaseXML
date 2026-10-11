@@ -4,7 +4,7 @@ epoxy = "5.2.1"
 fragmentKtx = "1.6.1"
 glide = "4.15.1"
 gson = "2.13.1"
-immersionbar = "3.4.6"
+immersionbar = "1.0.1"
 kotlin = "2.2.10"
 coreKtx = "1.16.0"
 hilt = "2.59.2"
@@ -34,6 +34,7 @@ startupRuntime = "1.2.0"
 timber = "5.0.1"
 utilcodex = "1.31.1"
 xxpermissionKtx = "1.0.2"
+orbitMvi = "11.0.0"
 
 [libraries]
 androidxCoreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,9 +53,7 @@ epoxy = { module = "com.airbnb.android:epoxy", version.ref = "epoxy" }
 epoxyProcessor = { module = "com.airbnb.android:epoxy-processor", version.ref = "epoxy" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-immersionbar = { module = "com.github.OCNYang.ImmersionBar:immersionbar", version.ref = "immersionbar" }
-immersionbarComponents = { module = "com.github.OCNYang.ImmersionBar:immersionbar-components", version.ref = "immersionbar" }
-immersionbarKtx = { module = "com.github.OCNYang.ImmersionBar:immersionbar-ktx", version.ref = "immersionbar" }
+immersionbar = { module = "com.github.impeterwayne:ImmersionBar", version.ref = "immersionbar" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidxJunit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidxEspressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -79,6 +78,7 @@ shapeView = { module = "io.github.impeterwayne:ShapeView", version.ref = "shapeV
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 utilcodex = { module = "com.blankj:utilcodex", version.ref = "utilcodex" }
 xxpermissionKtx = { module = "io.github.impeterwayne:xxpermission-ktx", version.ref = "xxpermissionKtx" }
+orbitViewmodel = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbitMvi" }
 
 # Gradle plugin libraries for build-logic
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }

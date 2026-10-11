@@ -24,7 +24,7 @@ androidComponents {
             "BASE_URL",
             BuildConfigField(
                 type = "String",
-                value = "\"https://ai-service.backendvn.com/\"",
+                value = "\"https://pokeapi.co/api/v2/\"",
                 comment = "Backend API base URL"
             )
         )

@@ -1,11 +1,11 @@
 package com.genesys.core.ui.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.viewbinding.ViewBinding
 import com.gyf.immersionbar.BarHide
 import com.gyf.immersionbar.ktx.fitsTitleBar
@@ -14,10 +14,11 @@ import com.gyf.immersionbar.ktx.showStatusBar
 
 typealias OnPerformBackPressed = () -> Unit
 
-abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
+abstract class BaseActivity<VB : ViewBinding>(
+    private val inflate: (LayoutInflater) -> VB
+) : AppCompatActivity() {
 
-    protected val viewBinding: VB by this.getLazyViewBinding()
-    abstract fun getLazyViewBinding(): Lazy<VB>
+    lateinit var mBinding: VB
 
     private var onPerformBackPressed: OnPerformBackPressed? = null
     private var onBackPressedCallback = object : OnBackPressedCallback(enabled = true) {
@@ -25,23 +26,36 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
             onPerformBackPressed?.invoke()
         }
     }
+
     protected open fun statusBarInsetTarget(): View? = null
-    protected open fun isForceDarkMode() : Boolean = true
+    protected open fun isForceDarkMode(): Boolean = true
     protected open fun isFitsSystemWindows(): Boolean = false
     protected open fun isHideSystemBars(): Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setupInit()
         super.onCreate(savedInstanceState)
-
+        requestWindow()
+        mBinding = inflate(layoutInflater)
+        setContentView(mBinding.root)
         registerBackPressedDispatcher()
         setupWindowInsets()
-        initViews(savedInstanceState)
-        initListeners()
         initImmersiveBar()
-        initObservers()
+        initViews()
+        onResizeViews()
+        onClickViews()
+        observeData()
     }
 
-    private fun initImmersiveBar() {
+    open fun requestWindow() = Unit
+    open fun initViews() = Unit
+    open fun onResizeViews() = Unit
+    open fun onClickViews() = Unit
+    open fun observeData() = Unit
+
+    protected open fun setupInit() = Unit
+
+    open fun initImmersiveBar() {
         immersionBar {
             transparentBar()
             statusBarDarkFont(isForceDarkMode())
@@ -67,26 +81,11 @@ abstract class BaseActivity<VB> : AppCompatActivity() where VB : ViewBinding {
         return onBackPressed != null
     }
 
-    protected open fun setupInit() = Unit
-
-    abstract fun initViews(savedInstanceState: Bundle?)
-    protected open fun initObservers() = Unit
-
-    protected open fun initListeners() = Unit
-
-    protected fun withViewBindings(block: VB.() -> Unit) {
-        with(viewBinding, block)
-    }
     private fun setupWindowInsets() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         applyStatusBarPadding(statusBarInsetTarget())
     }
 
     private fun applyStatusBarPadding(view: View?) {
         view?.let { fitsTitleBar(it) }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }
