@@ -13,10 +13,6 @@ android {
 }
 
 dependencies {
-    // Moshi annotations
-    implementation(libs.moshi)
-    implementation(libs.moshiKotlin)
-
-    // AndroidX annotations
+    implementation(libs.gson)
     implementation(libs.androidxCoreKtx)
 }

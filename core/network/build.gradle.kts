@@ -42,15 +42,10 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit2KotlinCoroutinesAdapter)
-    implementation(libs.converterMoshi)
+    implementation(libs.converterGson)
+    implementation(libs.gson)
 
     // Sandwich
     implementation(libs.sandwich)
     implementation(libs.sandwichRetrofit)
-
-    // Moshi
-    ksp(libs.moshiKotlinCodegen)
-    implementation(libs.moshi)
-    implementation(libs.moshiKotlin)
-    implementation(libs.moshiAdapters)
 }
